@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1f2937 0%, #374151 25%, #4b5563 50%, #6b7280 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -37,9 +37,9 @@
 
         .shape {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite;
         }
 
         .shape:nth-child(1) {
@@ -68,7 +68,7 @@
 
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            50% { transform: translateY(-10px) rotate(90deg); }
         }
 
         /* Header */
@@ -112,22 +112,43 @@
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: -10px;
+        }
+
         .nav-item {
             color: white;
             text-decoration: none;
             font-weight: 500;
             padding: 12px 24px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .nav-item:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         /* Portfolio Grid */
@@ -164,32 +185,21 @@
         .card-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 15px;
+            border-radius: 8px;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            transition: all 0.3s ease;
             overflow: hidden;
             position: relative;
         }
 
-        .card-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .card-image img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
+            object-fit: cover;
+            transition: all 0.3s ease;
         }
 
-        .portfolio-card:hover .card-image::before {
-            left: 100%;
+        .portfolio-card:hover .card-image img {
+            transform: scale(1.05);
         }
 
         .card-title {
@@ -213,14 +223,14 @@
             text-decoration: none;
             font-weight: 500;
             padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .card-link:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateX(5px);
         }
 
@@ -235,7 +245,166 @@
             }
         }
 
-        /* CTA Section */
+        /* About Section */
+        .about-section, .contact-section {
+            margin: 80px 0;
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .section-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .skill-category h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            border-radius: 50%;
+        }
+
+        .contact-details h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-details a,
+        .contact-details span {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
         .cta-section {
             text-align: center;
             padding: 60px 0;
@@ -261,18 +430,18 @@
         .cta-button {
             display: inline-block;
             padding: 15px 35px;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
             color: white;
             text-decoration: none;
             font-weight: 600;
-            border-radius: 30px;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(100, 116, 139, 0.4);
         }
 
         /* Footer */
@@ -307,6 +476,26 @@
             .cta-title {
                 font-size: 1.6rem;
             }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .avatar {
+                width: 60px;
+                height: 60px;
+            }
         }
 
         /* Scroll animations */
@@ -331,8 +520,12 @@
 
     <div class="container">
         <header>
-            <h1 class="logo">Portfolio Showcase</h1>
-            <p class="tagline">Discover amazing work and creative projects</p>
+            <div class="header-content">
+                <img src="https://avatars.githubusercontent.com/u/18473039?v=4&size=64" alt="Ivan Mercedes" class="avatar">
+                <h1 class="logo">Ivan Mercedes</h1>
+                <p class="tagline">Senior Full Stack Engineer | 15+ Years Experience</p>
+                <p class="subtitle">Crafting high-impact web solutions with modern technologies</p>
+            </div>
         </header>
 
         <nav>
@@ -344,31 +537,139 @@
 
         <section class="portfolio-grid" id="work">
             <div class="portfolio-card">
-                <div class="card-image">🎨</div>
-                <h3 class="card-title">Creative Design</h3>
-                <p class="card-description">Innovative visual designs that capture attention and communicate your brand's unique story through compelling graphics and layouts.</p>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=200&fit=crop&auto=format" alt="Cloud & DevOps" />
+                </div>
+                <h3 class="card-title">Cloud & DevOps</h3>
+                <p class="card-description">Infrastructure as Code with AWS, Terraform, and Jenkins. Serverless architectures and CI/CD pipelines for scalable enterprise solutions.</p>
                 <a href="#" class="card-link">View Project →</a>
             </div>
 
             <div class="portfolio-card">
-                <div class="card-image">💻</div>
-                <h3 class="card-title">Web Development</h3>
-                <p class="card-description">Modern, responsive websites built with cutting-edge technologies to deliver exceptional user experiences across all devices.</p>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop&auto=format" alt="Full Stack Development" />
+                </div>
+                <h3 class="card-title">Full Stack Development</h3>
+                <p class="card-description">Angular, Vue, React frontends with Node.js and .NET backends. Complete web solutions from database to deployment.</p>
                 <a href="#" class="card-link">View Project →</a>
             </div>
 
             <div class="portfolio-card">
-                <div class="card-image">📱</div>
-                <h3 class="card-title">Mobile Apps</h3>
-                <p class="card-description">Native and cross-platform mobile applications designed for performance, usability, and seamless integration with your business goals.</p>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=200&fit=crop&auto=format" alt="Enterprise Solutions" />
+                </div>
+                <h3 class="card-title">Enterprise Solutions</h3>
+                <p class="card-description">High-security applications for law enforcement and intelligence communities. SharePoint solutions and system hardening expertise.</p>
                 <a href="#" class="card-link">View Project →</a>
             </div>
 
             <div class="portfolio-card">
-                <div class="card-image">📊</div>
-                <h3 class="card-title">Data Analytics</h3>
-                <p class="card-description">Transform complex data into actionable insights with beautiful visualizations and comprehensive reporting dashboards.</p>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop&auto=format" alt="Technical Leadership" />
+                </div>
+                <h3 class="card-title">Technical Leadership</h3>
+                <p class="card-description">Leading Agile development teams, mentoring engineers, and driving architectural decisions for multi-million dollar projects.</p>
                 <a href="#" class="card-link">View Project →</a>
+            </div>
+        </section>
+
+        <section class="about-section scroll-animate" id="about">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a Senior Full Stack Engineer with over 15 years of experience developing high-impact, client-facing web solutions. My expertise spans the entire technology stack, from front-end frameworks like Angular, Vue, and React to robust back-end development with Node.js and .NET.</p>
+                    
+                    <p>Throughout my career, I've specialized in cloud architecture and DevOps automation using Amazon Web Services (AWS), Terraform, Jenkins, and Docker. I'm passionate about providing technical leadership to Agile teams and managing the full software development lifecycle to build tools that enhance productivity and streamline operations.</p>
+
+                    <p>My experience includes providing high-profile technical solutions to law enforcement and intelligence communities, leading multi-million dollar projects, and mentoring development teams. I hold a Master's degree in Information Technology with a focus on Software Engineering and maintain several industry certifications including AWS Cloud Practitioner and Security+.</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Frontend</h4>
+                        <div class="skills">
+                            <span class="skill">Angular</span>
+                            <span class="skill">Vue.js</span>
+                            <span class="skill">React</span>
+                            <span class="skill">TypeScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Backend</h4>
+                        <div class="skills">
+                            <span class="skill">Node.js</span>
+                            <span class="skill">.NET Core</span>
+                            <span class="skill">C#</span>
+                            <span class="skill">SQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Cloud & DevOps</h4>
+                        <div class="skills">
+                            <span class="skill">AWS</span>
+                            <span class="skill">Terraform</span>
+                            <span class="skill">Docker</span>
+                            <span class="skill">Jenkins</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Databases</h4>
+                        <div class="skills">
+                            <span class="skill">PostgreSQL</span>
+                            <span class="skill">SQL Server</span>
+                            <span class="skill">Oracle</span>
+                            <span class="skill">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section scroll-animate" id="contact">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:ivan.mercedes@sidemotion.com">ivan.mercedes@sidemotion.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <span>Columbia, MD</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <a href="tel:240-242-9402">240-242-9402</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/ivanjmercedes" target="_blank" class="social-link">
+                        <svg class="social-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/Draghonite" target="_blank" class="social-link">
+                        <svg class="social-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -380,7 +681,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Portfolio Showcase. Crafted with passion and creativity.</p>
+        <p>&copy; 2025 Ivan Mercedes. Senior Full Stack Engineer crafting innovative solutions.</p>
     </footer>
 
     <script>
