@@ -1,744 +1,425 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Showcase</title>
+    <title>Ivan J Mercedes - Senior Full Stack Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configure Tailwind CSS to use the 'class' strategy for dark mode
+        tailwind.config = {
+          darkMode: 'class'
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Custom styles for the page */
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #1f2937 0%, #374151 25%, #4b5563 50%, #6b7280 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Animated Background Elements */
-        .bg-shapes {
+        
+        /* Particles.js background style */
+        #particles-js {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            top: 0;
+            left: 0;
             z-index: -1;
         }
 
-        .shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
+        /* Style for the animated underline effect on nav links */
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #60A5FA; /* blue-400 */
+            transition: width .3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
 
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
+        /* Gradient text effect for dark mode */
+        .dark .gradient-text {
+            background: linear-gradient(to right, #60A5FA, #34D399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 20%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .shape:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(90deg); }
-        }
-
-        /* Header */
-        header {
-            padding: 40px 0;
-            text-align: center;
-            animation: slideDown 1s ease-out;
-        }
-
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 60px;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .header-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: -10px;
-        }
-
-        .nav-item {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 12px 24px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Portfolio Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-
-        .portfolio-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* Animation classes for scroll effects */
+        .reveal {
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.6s ease-out forwards;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
-        .portfolio-card:nth-child(1) { animation-delay: 0.1s; }
-        .portfolio-card:nth-child(2) { animation-delay: 0.2s; }
-        .portfolio-card:nth-child(3) { animation-delay: 0.3s; }
-        .portfolio-card:nth-child(4) { animation-delay: 0.4s; }
-
-        .portfolio-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 200px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-card:hover .card-image img {
-            transform: scale(1.05);
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 10px;
-        }
-
-        .card-description {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .card-link:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(5px);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* About Section */
-        .about-section, .contact-section {
-            margin: 80px 0;
-            padding: 60px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .section-line {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .about-text p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .skill-category h4 {
-            color: white;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill {
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            transition: all 0.3s ease;
-        }
-
-        .skill:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        /* Contact Section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .contact-info {
-            display: grid;
-            gap: 30px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-            border-radius: 50%;
-        }
-
-        .contact-details h4 {
-            color: white;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .contact-details a,
-        .contact-details span {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-details a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
-        .cta-section {
-            text-align: center;
-            padding: 60px 0;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .cta-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .cta-description {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(100, 116, 139, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-item {
-                font-size: 0.9rem;
-                padding: 10px 20px;
-            }
-
-            nav {
-                gap: 15px;
-                flex-wrap: wrap;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .logo {
-                font-size: 2rem;
-            }
-
-            .cta-title {
-                font-size: 1.6rem;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .avatar {
-                width: 60px;
-                height: 60px;
-            }
-        }
-
-        /* Scroll animations */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-
-        .scroll-animate.visible {
+        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Project card styles */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .dark .project-card:hover {
+             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tech stack scroller animation */
+        .tech-scroller {
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .animate-marquee {
+            animation: marquee 60s linear infinite;
+        }
+        .tech-scroller:hover .animate-marquee {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        
+        .hero-image-glow {
+            filter: drop-shadow(0 0 2rem rgba(96, 165, 250, 0.3));
+        }
     </style>
+    <script>
+        // Set theme on initial load
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+    </script>
 </head>
-<body>
-    <div class="bg-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
+<body class="bg-gray-50 text-gray-700 dark:bg-gray-900 dark:text-gray-300 antialiased">
 
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <img src="https://avatars.githubusercontent.com/u/18473039?v=4&size=64" alt="Ivan Mercedes" class="avatar">
-                <h1 class="logo">Ivan Mercedes</h1>
-                <p class="tagline">Senior Full Stack Engineer | 15+ Years Experience</p>
-                <p class="subtitle">Crafting high-impact web solutions with modern technologies</p>
+    <div id="particles-js"></div>
+
+    <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-gray-900 dark:text-white">Ivan J. Mercedes</a>
+            <div class="flex items-center">
+                <div class="hidden md:flex space-x-8 mr-8">
+                    <a href="#about" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300">About</a>
+                    <a href="#skills" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300">Skills</a>
+                    <a href="#experience" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300">Experience</a>
+                    <a href="#education" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300">Education</a>
+                </div>
+                <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 016.465 3.636l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM5 11a1 1 0 100-2H4a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
             </div>
-        </header>
-
-        <nav>
-            <a href="#work" class="nav-item">My Work</a>
-            <a href="#about" class="nav-item">About</a>
-            <a href="#services" class="nav-item">Services</a>
-            <a href="#contact" class="nav-item">Contact</a>
         </nav>
+    </header>
 
-        <section class="portfolio-grid" id="work">
-            <div class="portfolio-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=200&fit=crop&auto=format" alt="Cloud & DevOps" />
-                </div>
-                <h3 class="card-title">Cloud & DevOps</h3>
-                <p class="card-description">Infrastructure as Code with AWS, Terraform, and Jenkins. Serverless architectures and CI/CD pipelines for scalable enterprise solutions.</p>
-                <a href="#" class="card-link">View Project →</a>
-            </div>
+    <main class="relative z-10">
 
-            <div class="portfolio-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=200&fit=crop&auto=format" alt="Full Stack Development" />
-                </div>
-                <h3 class="card-title">Full Stack Development</h3>
-                <p class="card-description">Angular, Vue, React frontends with Node.js and .NET backends. Complete web solutions from database to deployment.</p>
-                <a href="#" class="card-link">View Project →</a>
-            </div>
-
-            <div class="portfolio-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=200&fit=crop&auto=format" alt="Enterprise Solutions" />
-                </div>
-                <h3 class="card-title">Enterprise Solutions</h3>
-                <p class="card-description">High-security applications for law enforcement and intelligence communities. SharePoint solutions and system hardening expertise.</p>
-                <a href="#" class="card-link">View Project →</a>
-            </div>
-
-            <div class="portfolio-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop&auto=format" alt="Technical Leadership" />
-                </div>
-                <h3 class="card-title">Technical Leadership</h3>
-                <p class="card-description">Leading Agile development teams, mentoring engineers, and driving architectural decisions for multi-million dollar projects.</p>
-                <a href="#" class="card-link">View Project →</a>
-            </div>
-        </section>
-
-        <section class="about-section scroll-animate" id="about">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I'm a Senior Full Stack Engineer with over 15 years of experience developing high-impact, client-facing web solutions. My expertise spans the entire technology stack, from front-end frameworks like Angular, Vue, and React to robust back-end development with Node.js and .NET.</p>
-                    
-                    <p>Throughout my career, I've specialized in cloud architecture and DevOps automation using Amazon Web Services (AWS), Terraform, Jenkins, and Docker. I'm passionate about providing technical leadership to Agile teams and managing the full software development lifecycle to build tools that enhance productivity and streamline operations.</p>
-
-                    <p>My experience includes providing high-profile technical solutions to law enforcement and intelligence communities, leading multi-million dollar projects, and mentoring development teams. I hold a Master's degree in Information Technology with a focus on Software Engineering and maintain several industry certifications including AWS Cloud Practitioner and Security+.</p>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>Frontend</h4>
-                        <div class="skills">
-                            <span class="skill">Angular</span>
-                            <span class="skill">Vue.js</span>
-                            <span class="skill">React</span>
-                            <span class="skill">TypeScript</span>
-                        </div>
+        <section id="hero" class="container mx-auto px-6">
+            <div class="min-h-[70vh] flex flex-col md:flex-row items-center justify-between text-left py-20">
+                <div>
+                    <h1 class="text-4xl md:text-7xl font-bold leading-tight reveal text-gray-900 gradient-text pb-2">
+                        Senior Full Stack Engineer
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-xl reveal" style="transition-delay: 100ms;">
+                        Building high-impact, client-facing web solutions with expertise in modern front-end and back-end technologies.
+                    </p>
+                    <div class="mt-8 flex space-x-4 reveal" style="transition-delay: 200ms;">
+                        <a href="https://linkedin.com/in/ivanjmercedes" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="https://github.com/Draghonite" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </a>
+                         <a href="mailto:ivan.mercedes@sidemotion.com" class="text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        </a>
                     </div>
-                    <div class="skill-category">
-                        <h4>Backend</h4>
-                        <div class="skills">
-                            <span class="skill">Node.js</span>
-                            <span class="skill">.NET Core</span>
-                            <span class="skill">C#</span>
-                            <span class="skill">SQL</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Cloud & DevOps</h4>
-                        <div class="skills">
-                            <span class="skill">AWS</span>
-                            <span class="skill">Terraform</span>
-                            <span class="skill">Docker</span>
-                            <span class="skill">Jenkins</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Databases</h4>
-                        <div class="skills">
-                            <span class="skill">PostgreSQL</span>
-                            <span class="skill">SQL Server</span>
-                            <span class="skill">Oracle</span>
-                            <span class="skill">MySQL</span>
-                        </div>
+                </div>
+                 <div class="hidden md:block mt-10 md:mt-0 flex justify-center items-center reveal" style="transition-delay: 300ms;">
+                    <div class="w-80 h-80 rounded-full hero-image-glow border-2 opacity-50 transform scale-125" style="background-color: rgb(255 255 255 / .7); background-image: url('https://drive.google.com/thumbnail?id=1C6VFC4dpHTYpHV3lHg8BoIJAJC8UIyw2&sz=w800'); background-size: cover; background-position: center;">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="contact-section scroll-animate" id="contact">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <a href="mailto:ivan.mercedes@sidemotion.com">ivan.mercedes@sidemotion.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-details">
-                            <h4>Location</h4>
-                            <span>Columbia, MD</span>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div class="contact-details">
-                            <h4>Phone</h4>
-                            <a href="tel:240-242-9402">240-242-9402</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="social-links">
-                    <a href="https://linkedin.com/in/ivanjmercedes" target="_blank" class="social-link">
-                        <svg class="social-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://github.com/Draghonite" target="_blank" class="social-link">
-                        <svg class="social-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                        <span>GitHub</span>
-                    </a>
+        <section id="tech-stack" class="py-12 bg-gray-100 dark:bg-gray-800/50 reveal">
+            <div class="relative w-full overflow-hidden tech-scroller">
+                <div class="flex animate-marquee whitespace-nowrap">
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M6 28L4 3H28L26 28L16 31L6 28Z" fill="#E44D26"/><path d="M26 5H16V29.5L24 27L26 5Z" fill="#F16529"/><path d="M9.5 17.5L8.5 8H24L23.5 11H11.5L12 14.5H23L22 24L16 26L10 24L9.5 19H12.5L13 21.5L16 22.5L19 21.5L19.5 17.5H9.5Z" fill="white"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">HTML5</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M6 28L4 3H28L26 28L16 31L6 28Z" fill="#1172B8"/><path d="M26 5H16V29.5L24 27L26 5Z" fill="#33AADD"/><path d="M19.5 17.5H9.5L9 14L17 11.5H9L8.5 8.5H24L23.5 12L17 14.5H23L22 24L16 26L10 24L9.5 19H12.5L13 21.5L16 22.5L19 21.5L19.5 17.5Z" fill="white"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">CSS3</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" preserveAspectRatio="xMinYMin meet"><path d="M0 0h256v256H0V0z" fill="#F7DF1E"/><path d="M67.312 213.932l19.59-11.856c3.78 6.701 7.218 12.371 15.465 12.371 7.905 0 12.89-3.092 12.89-15.12v-81.798h24.057v82.138c0 24.917-14.606 36.259-35.916 36.259-19.245 0-30.416-9.967-36.087-21.996M152.381 211.354l19.588-11.341c5.157 8.421 11.859 14.607 23.715 14.607 9.969 0 16.325-4.984 16.325-11.858 0-8.248-6.53-11.17-17.528-15.98l-6.013-2.58c-17.357-7.387-28.87-16.667-28.87-36.257 0-18.044 13.747-31.792 35.228-31.792 15.294 0 26.292 5.328 34.196 19.247L210.29 147.43c-4.125-7.389-8.591-10.31-15.465-10.31-7.046 0-11.514 4.468-11.514 10.31 0 7.217 4.468 10.14 14.778 14.608l6.014 2.577c20.45 8.765 31.963 17.7 31.963 37.804 0 21.654-17.012 33.51-39.867 33.51-22.339 0-36.774-10.654-43.819-24.574"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">JavaScript</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 128 128" fill="none"><rect fill="#3178c6" height="128" rx="6" width="128"/><path clip-rule="evenodd" d="m74.2622 99.468v14.026c2.2724 1.168 4.9598 2.045 8.0625 2.629 3.1027.585 6.3728.877 9.8105.877 3.3503 0 6.533-.321 9.5478-.964 3.016-.643 5.659-1.702 7.932-3.178 2.272-1.476 4.071-3.404 5.397-5.786 1.325-2.381 1.988-5.325 1.988-8.8313 0-2.5421-.379-4.7701-1.136-6.6841-.758-1.9139-1.85-3.6159-3.278-5.1062-1.427-1.4902-3.139-2.827-5.134-4.0104-1.996-1.1834-4.246-2.3011-6.752-3.353-1.8352-.7597-3.4812-1.4975-4.9378-2.2134-1.4567-.7159-2.6948-1.4464-3.7144-2.1915-1.0197-.7452-1.8063-1.5341-2.3598-2.3669-.5535-.8327-.8303-1.7751-.8303-2.827 0-.9643.2476-1.8336.7429-2.6079s1.1945-1.4391 2.0976-1.9943c.9031-.5551 2.0101-.9861 3.3211-1.2929 1.311-.3069 2.7676-.4603 4.3699-.4603 1.1658 0 2.3958.0877 3.6928.263 1.296.1753 2.6.4456 3.911.8109 1.311.3652 2.585.8254 3.824 1.3806 1.238.5552 2.381 1.198 3.43 1.9285v-13.1051c-2.127-.8182-4.45-1.4245-6.97-1.819s-5.411-.5917-8.6744-.5917c-3.3211 0-6.4674.3579-9.439 1.0738-2.9715.7159-5.5862 1.8336-7.844 3.353-2.2578 1.5195-4.0422 3.4553-5.3531 5.8075-1.311 2.3522-1.9665 5.1646-1.9665 8.4373 0 4.1785 1.2017 7.7433 3.6052 10.6945 2.4035 2.9513 6.0523 5.4496 10.9466 7.495 1.9228.7889 3.7145 1.5633 5.375 2.323 1.6606.7597 3.0954 1.5486 4.3044 2.3668s2.1628 1.7094 2.8618 2.6736c.7.9643 1.049 2.06 1.049 3.2873 0 .9062-.218 1.7462-.655 2.5202s-1.1 1.446-1.9885 2.016c-.8886.57-1.9956 1.016-3.3212 1.337-1.3255.321-2.8768.482-4.6539.482-3.0299 0-6.0305-.533-9.0021-1.6-2.9715-1.066-5.7245-2.666-8.2591-4.799zm-23.5596-34.9136h18.2974v-11.5544h-51v11.5544h18.2079v51.4456h14.4947z" fill="#fff" fill-rule="evenodd"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">TypeScript</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 2L3 7L5 24L16 30L27 24L29 7L16 2Z" fill="#DD0031"/><path d="M16 2V30L27 24L29 7L16 2Z" fill="#C3002F"/><path d="M15.9998 5.09375L7.87305 23.3638H10.9031L12.5368 19.2757H19.4348L21.0685 23.3638H24.0986L15.9998 5.09375ZM18.3736 16.7557H13.626L15.9998 11.0298L18.3736 16.7557Z" fill="white"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">Angular</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M2 4L16 28L30 4H24.5L16 18.5L7.5 4H2Z" fill="#41B883"/><path d="M7.5 4L16 18.5L24.5 4H19.5L16.0653 10.0126L12.5 4H7.5Z" fill="#35495E"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">Vue.js</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M18.6789 15.9759C18.6789 14.5415 17.4796 13.3785 16 13.3785C14.5206 13.3785 13.3211 14.5415 13.3211 15.9759C13.3211 17.4105 14.5206 18.5734 16 18.5734C17.4796 18.5734 18.6789 17.4105 18.6789 15.9759Z" fill="#53C1DE"/><path fill-rule="evenodd" clip-rule="evenodd" d="M24.7004 11.1537C25.2661 8.92478 25.9772 4.79148 23.4704 3.39016C20.9753 1.99495 17.7284 4.66843 16.0139 6.27318C14.3044 4.68442 10.9663 2.02237 8.46163 3.42814C5.96751 4.82803 6.73664 8.8928 7.3149 11.1357C4.98831 11.7764 1 13.1564 1 15.9759C1 18.7874 4.98416 20.2888 7.29698 20.9289C6.71658 23.1842 5.98596 27.1909 8.48327 28.5877C10.9973 29.9932 14.325 27.3945 16.0554 25.7722C17.7809 27.3864 20.9966 30.0021 23.4922 28.6014C25.9956 27.1963 25.3436 23.1184 24.7653 20.8625C27.0073 20.221 31 18.7523 31 15.9759C31 13.1835 26.9903 11.7923 24.7004 11.1537ZM24.4162 19.667C24.0365 18.5016 23.524 17.2623 22.8971 15.9821C23.4955 14.7321 23.9881 13.5088 24.3572 12.3509C26.0359 12.8228 29.7185 13.9013 29.7185 15.9759C29.7185 18.07 26.1846 19.1587 24.4162 19.667ZM22.85 27.526C20.988 28.571 18.2221 26.0696 16.9478 24.8809C17.7932 23.9844 18.638 22.9422 19.4625 21.7849C20.9129 21.6602 22.283 21.4562 23.5256 21.1777C23.9326 22.7734 24.7202 26.4763 22.85 27.526ZM9.12362 27.5111C7.26143 26.47 8.11258 22.8946 8.53957 21.2333C9.76834 21.4969 11.1286 21.6865 12.5824 21.8008C13.4123 22.9332 14.2816 23.9741 15.1576 24.8857C14.0753 25.9008 10.9945 28.557 9.12362 27.5111ZM2.28149 15.9759C2.28149 13.874 5.94207 12.8033 7.65904 12.3326C8.03451 13.5165 8.52695 14.7544 9.12123 16.0062C8.51925 17.2766 8.01977 18.5341 7.64085 19.732C6.00369 19.2776 2.28149 18.0791 2.28149 15.9759ZM9.1037 4.50354C10.9735 3.45416 13.8747 6.00983 15.1159 7.16013C14.2444 8.06754 13.3831 9.1006 12.5603 10.2265C11.1494 10.3533 9.79875 10.5569 8.55709 10.8297C8.09125 9.02071 7.23592 5.55179 9.1037 4.50354ZM20.3793 11.5771C21.3365 11.6942 22.2536 11.85 23.1147 12.0406C22.8562 12.844 22.534 13.6841 22.1545 14.5453C21.6044 13.5333 21.0139 12.5416 20.3793 11.5771ZM16.0143 8.0481C16.6054 8.66897 17.1974 9.3623 17.7798 10.1145C16.5985 10.0603 15.4153 10.0601 14.234 10.1137C14.8169 9.36848 15.414 8.67618 16.0143 8.0481ZM9.8565 14.5444C9.48329 13.6862 9.16398 12.8424 8.90322 12.0275C9.75918 11.8418 10.672 11.69 11.623 11.5748C10.9866 12.5372 10.3971 13.5285 9.8565 14.5444ZM11.6503 20.4657C10.6679 20.3594 9.74126 20.2153 8.88556 20.0347C9.15044 19.2055 9.47678 18.3435 9.85796 17.4668C10.406 18.4933 11.0045 19.4942 11.6503 20.4657ZM16.0498 23.9915C15.4424 23.356 14.8365 22.6531 14.2448 21.8971C15.4328 21.9423 16.6231 21.9424 17.811 21.891C17.2268 22.6608 16.6369 23.3647 16.0498 23.9915ZM22.1667 17.4222C22.5677 18.3084 22.9057 19.1657 23.1742 19.9809C22.3043 20.1734 21.3652 20.3284 20.3757 20.4435C21.015 19.4607 21.6149 18.4536 22.1667 17.4222ZM18.7473 20.5941C16.9301 20.72 15.1016 20.7186 13.2838 20.6044C12.2509 19.1415 11.3314 17.603 10.5377 16.0058C11.3276 14.4119 12.2404 12.8764 13.2684 11.4158C15.0875 11.2825 16.9178 11.2821 18.7369 11.4166C19.7561 12.8771 20.6675 14.4086 21.4757 15.9881C20.6771 17.5812 19.7595 19.1198 18.7473 20.5941ZM22.8303 4.4666C24.7006 5.51254 23.8681 9.22726 23.4595 10.8426C22.2149 10.5641 20.8633 10.3569 19.4483 10.2281C18.6239 9.09004 17.7698 8.05518 16.9124 7.15949C18.1695 5.98441 20.9781 3.43089 22.8303 4.4666Z" fill="#53C1DE"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">React</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M17.1725 2.29872C16.4627 1.89953 15.5373 1.90132 14.8269 2.29872C11.2689 4.26227 7.71082 6.22641 4.15216 8.18906C3.45969 8.55335 2.99264 9.29698 3.00009 10.0688V21.9328C2.99509 22.7197 3.48622 23.4705 4.19655 23.8298C5.21871 24.3736 6.2118 24.9726 7.25244 25.4802C8.45451 26.0709 9.95843 26.2015 11.1752 25.5855C12.1629 25.075 12.6016 23.9395 12.6003 22.896C12.6083 18.9806 12.6016 15.0651 12.6034 11.1496C12.6269 10.9756 12.4962 10.7896 12.3064 10.7938C11.8517 10.7866 11.3964 10.7896 10.9417 10.7926C10.7699 10.7764 10.6022 10.9191 10.6152 11.0918C10.6091 14.982 10.6164 18.8734 10.6115 22.7642C10.6214 23.3024 10.2578 23.8196 9.73913 24.0014C8.5412 24.4213 5.12198 22.2012 5.12198 22.2012C4.9965 22.1431 4.91682 22.007 4.92912 21.8718C4.92912 17.9576 4.92973 14.0433 4.92912 10.1297C4.91187 9.97191 5.00912 9.8298 5.15402 9.76538C8.70033 7.8134 12.2448 5.85654 15.7911 3.90336C15.9143 3.82115 16.086 3.8214 16.2089 3.90396C19.7552 5.85654 23.3003 7.81161 26.8472 9.76368C26.9926 9.828 27.0857 9.9725 27.0709 10.1297C27.0703 14.0433 27.0721 17.9576 27.0697 21.8713C27.0802 22.0098 27.0086 22.144 26.8793 22.2048C23.3661 24.1462 19.8129 26.025 16.3315 28.0228C16.1796 28.1099 16.0075 28.2086 15.8373 28.1126C14.9218 27.6062 14.0174 27.0801 13.1049 26.5688C13.0057 26.5069 12.8794 26.4803 12.7759 26.5496C12.3668 26.7652 11.982 26.9398 11.5122 27.1258C10.8524 27.387 10.9578 27.4938 11.5529 27.8405C12.62 28.4444 13.6889 29.0459 14.756 29.6504C15.4585 30.0888 16.4024 30.12 17.1275 29.7149C20.6861 27.7538 24.2436 25.7904 27.8029 23.8293C28.5113 23.468 29.0049 22.7202 28.9999 21.9327V10.0688C29.0068 9.31264 28.5576 8.58227 27.886 8.21259C24.3156 6.23947 20.7435 4.27064 17.1725 2.29872Z" fill="#8CC84B"/><path d="M22.5419 11.2062C21.1452 10.459 19.4836 10.4192 17.9315 10.5169C16.8102 10.6277 15.6309 10.9371 14.814 11.7409C13.9761 12.5489 13.7937 13.8537 14.1917 14.9085C14.4769 15.6539 15.1948 16.1386 15.9372 16.395C16.8935 16.7326 17.8979 16.837 18.9026 16.9414C19.819 17.0366 20.7357 17.1319 21.6165 17.4042C21.9763 17.5234 22.3953 17.7058 22.5055 18.0973C22.6073 18.5609 22.4957 19.0998 22.1193 19.4219C20.9237 20.3682 17.5979 20.2232 16.4166 19.4784C15.939 19.1611 15.7332 18.5994 15.6495 18.0641C15.6402 17.8973 15.5059 17.7443 15.3248 17.757C14.8713 17.7516 14.4178 17.7528 13.9643 17.7564C13.8061 17.7431 13.6416 17.8557 13.6329 18.0172C13.5397 20.4689 15.7914 21.5377 17.9039 21.773C19.1108 21.888 20.3442 21.8814 21.5327 21.6224C22.4261 21.419 23.3219 21.0444 23.9369 20.3563C24.6953 19.52 24.8444 18.2749 24.5043 17.2332C24.2443 16.4559 23.5012 15.9573 22.7416 15.7008C21.7086 15.3466 20.4844 15.1562 19.5488 15.0671C18.1889 14.9376 16.5729 14.9905 16.188 14.0969C16.0345 13.629 16.1651 13.048 16.5951 12.7602C17.7328 11.9885 20.0483 12.091 21.2265 12.6675C21.7675 12.9384 22.081 13.4948 22.2104 14.0565C22.2344 14.2215 22.3454 14.3937 22.5364 14.3865C22.9868 14.3955 23.4372 14.3889 23.8875 14.3895C24.0422 14.4003 24.2116 14.313 24.2418 14.1546C24.2227 12.9806 23.6232 11.7788 22.5419 11.2062Z" fill="#8CC84B"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">Node.js</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><title>Terraform</title><polygon points="12.042 6.858 20.071 11.448 20.071 20.462 12.042 15.868 12.042 6.858 12.042 6.858" style="fill:#813cf3"/><polygon points="20.5 20.415 28.459 15.84 28.459 6.887 20.5 11.429 20.5 20.415 20.5 20.415" style="fill:#813cf3"/><polygon points="3.541 11.01 11.571 15.599 11.571 6.59 3.541 2 3.541 11.01 3.541 11.01" style="fill:#813cf3"/><polygon points="12.042 25.41 20.071 30 20.071 20.957 12.042 16.368 12.042 25.41 12.042 25.41" style="fill:#813cf3"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">Terraform</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024"><circle cx="512" cy="512" r="512" style="fill:#232f3e"/><path d="M400.3 479.1c0 6.3.7 11.4 1.9 15.1 1.4 3.8 3.1 7.9 5.5 12.3.9 1.3 1.2 2.7 1.2 3.9 0 1.7-1 3.4-3.2 5.1l-10.7 7.1c-1.3.9-2.8 1.5-4.4 1.5-1.7 0-3.4-.9-5.1-2.4-2.3-2.5-4.3-5.1-6.1-8-1.9-3.3-3.7-6.6-5.3-10-13.3 15.7-30 23.5-50.1 23.5-14.3 0-25.7-4.1-34-12.2-8.3-8.2-12.6-19.1-12.6-32.7 0-14.5 5.1-26.2 15.5-35.1 10.4-8.9 24.2-13.3 41.7-13.3 5.8 0 11.8.5 18 1.4 6.3.9 12.8 2.2 19.6 3.8v-12.4c0-12.9-2.7-22-8-27.2-5.4-5.3-14.6-7.8-27.7-7.8-6 0-12.1.7-18.4 2.2s-12.4 3.4-18.4 5.8c-1.9.9-3.9 1.6-6 2.2-.9.3-1.8.4-2.7.5-2.4 0-3.6-1.7-3.6-5.3v-8.3c0-2.7.3-4.8 1.2-6 1.3-1.5 2.9-2.8 4.8-3.6 6-3.1 13.1-5.6 21.4-7.7 8.7-2.2 17.6-3.3 26.6-3.2 20.3 0 35.1 4.6 44.6 13.8 9.4 9.2 14.1 23.1 14.1 41.9v55.2l.2-.1zM331.2 505c5.6 0 11.4-1 17.5-3.1 6.1-2 11.6-5.8 16.2-10.9 2.7-3.2 4.8-6.8 5.8-10.9 1-4.1 1.7-9 1.7-14.8v-7.1c-5.2-1.3-10.4-2.2-15.7-2.9-5.3-.7-10.7-1-16-1-11.4 0-19.8 2.2-25.4 6.8-5.6 4.6-8.3 11.1-8.3 19.6 0 8 2 14 6.3 18 4.1 4.3 10 6.3 17.9 6.3zm136.7 18.4c-3.1 0-5.1-.5-6.5-1.7-1.4-1-2.6-3.4-3.6-6.6l-40-131.6c-.8-2.2-1.3-4.5-1.5-6.8 0-2.7 1.4-4.3 4.1-4.3h16.7c3.2 0 5.4.5 6.6 1.7 1.4 1 2.4 3.4 3.4 6.7l28.6 112.7 26.6-112.7c.9-3.4 1.9-5.6 3.2-6.7 2-1.3 4.4-1.9 6.8-1.7H526c3.2 0 5.5.5 6.8 1.7 1.3 1 2.6 3.4 3.2 6.7l26.9 114.1 29.5-114.1c1-3.4 2.2-5.6 3.4-6.7 2-1.3 4.3-1.9 6.6-1.7h15.9c2.7 0 4.3 1.4 4.3 4.3 0 .9-.2 1.7-.4 2.7-.3 1.5-.7 2.9-1.2 4.3l-41 131.6c-1 3.4-2.2 5.6-3.6 6.6-1.9 1.2-4.2 1.8-6.5 1.7h-14.7c-3.2 0-5.4-.5-6.8-1.7-1.3-1.2-2.5-3.4-3.2-6.8l-26.4-109.8L492.6 515c-.9 3.4-1.9 5.6-3.2 6.8-1.4 1.2-3.8 1.7-6.8 1.7l-14.7-.1zm218.8 4.6c-8.9 0-17.7-1-26.2-3.1-8.5-2-15.1-4.3-19.6-6.8-2.7-1.5-4.6-3.2-5.3-4.8-.7-1.5-1-3.1-1-4.8v-8.7c0-3.6 1.4-5.3 3.9-5.3 1 0 2 .2 3.1.5 1 .3 2.6 1 4.3 1.7 5.8 2.6 12.1 4.6 18.7 6 6.8 1.4 13.4 2 20.3 2 10.7 0 19.1-1.9 24.9-5.6 5.6-3.4 9-9.6 8.9-16.2.1-4.4-1.5-8.7-4.6-11.9-3.1-3.2-8.9-6.1-17.2-8.9l-24.7-7.7c-12.4-3.9-21.6-9.7-27.2-17.3-5.5-7.1-8.5-15.8-8.5-24.7 0-7.1 1.6-13.4 4.6-18.9 3.1-5.4 7.1-10.2 12.3-14 5.1-3.9 10.9-6.8 17.7-8.9 6.8-2 14-2.9 21.5-2.9 3.7 0 7.7.2 11.4.7 3.9.5 7.5 1.2 11.1 1.9 3.4.9 6.7 1.7 9.7 2.7 3.1 1 5.5 2 7.2 3.1 2 1 3.8 2.5 5.1 4.3 1.1 1.7 1.6 3.6 1.5 5.6v8c0 3.6-1.4 5.5-3.9 5.5-2.3-.3-4.5-1-6.5-2-10.3-4.5-21.4-6.8-32.7-6.6-9.7 0-17.4 1.5-22.7 4.8-5.3 3.2-8 8.2-8 15.1 0 4.8 1.7 8.9 5.1 12.1 3.4 3.2 9.7 6.5 18.7 9.4l24.2 7.6c12.2 3.9 21.1 9.4 26.4 16.4 5.3 7 7.8 15 7.8 23.8 0 7.3-1.5 14-4.4 19.8-3.1 5.8-7.2 10.9-12.4 15-5.3 4.3-11.6 7.3-18.9 9.5-7.9 2.4-15.9 3.6-24.6 3.6zm32.2 82.7c-56 41.4-137.4 63.3-207.4 63.3-98.1 0-186.5-36.3-253.2-96.6-5.3-4.8-.5-11.2 5.8-7.5 72.2 41.9 161.3 67.3 253.4 67.3 62.2 0 130.4-12.9 193.3-39.5 9.3-4.2 17.3 6.2 8.1 13zm23.3-26.5c-7.2-9.2-47.4-4.4-65.6-2.2-5.4.7-6.3-4.1-1.3-7.7 32-22.5 84.6-16 90.8-8.5 6.1 7.7-1.7 60.3-31.7 85.5-4.6 3.9-9 1.9-7-3.2 6.8-16.9 22-54.9 14.8-63.9z" style="fill:#fff"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">AWS</span></div>
+                    <div class="flex items-center mx-8"><svg class="h-10 w-10 text-gray-500 dark:text-gray-400 mr-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><title>Docker</title><path d="M16.54,12.663H19.4v2.924h1.446a6.272,6.272,0,0,0,1.988-.333,5.091,5.091,0,0,0,.966-.436,3.584,3.584,0,0,1-.67-1.849,3.907,3.907,0,0,1,.7-2.753l.3-.348.358.288a4.558,4.558,0,0,1,1.795,2.892,4.375,4.375,0,0,1,3.319.309l.393.226-.207.4a4.141,4.141,0,0,1-4.157,1.983c-2.48,6.168-7.871,9.088-14.409,9.088-3.378,0-6.476-1.263-8.241-4.259l-.029-.049L2.7,20.227a8.316,8.316,0,0,1-.659-4.208l.04-.433H4.526V12.663H7.387V9.8h5.721V6.942H16.54v5.721Z" style="fill:#0096e6"/><path d="M12.006,24.567a6.022,6.022,0,0,1-3.14-3.089,10.329,10.329,0,0,1-2.264.343q-.5.028-1.045.028-.632,0-1.331-.037a9.051,9.051,0,0,0,7,2.769Q11.618,24.581,12.006,24.567Z" style="fill:#fff"/><path d="M7.08,13.346h.2v2.067h-.2Zm-.376,0h.2v2.067H6.7V13.346Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.368,0h.2v2.067h-.2V13.346ZM5,13.14H7.482v2.479H5Zm2.859-2.861h2.48v2.479H7.863Zm2.077.207h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2V10.486Zm-.376,0h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.368,0h.2v2.066h-.2Zm-.207,2.653h2.48v2.48H7.863V13.14Zm2.077.207h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2V13.346Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.368,0h.2v2.067h-.2Zm2.654-.207H13.2v2.48h-2.48V13.14Zm2.076.207H13v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.368,0h.2v2.067h-.2Zm-.206-3.067H13.2v2.479h-2.48V10.279Zm2.076.207H13v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.368,0h.2v2.066h-.2Zm2.654,2.653h2.479v2.48h-2.48V13.14Zm2.076.207h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.368,0h.192v2.067h-.2V13.346Zm-.206-3.067h2.479v2.479h-2.48V10.279Zm2.076.207h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.376,0h.2v2.066h-.2Zm-.368,0h.192v2.066h-.2V10.486Zm-.206-3.067h2.479V9.9h-2.48V7.419Zm2.076.206h.2V9.691h-.2Zm-.376,0h.2V9.691h-.2Zm-.376,0h.2V9.691h-.2Zm-.376,0h.2V9.691h-.2Zm-.376,0h.2V9.691h-.2Zm-.368,0h.192V9.691h-.2V7.625Zm2.654,5.514h2.479v2.48h-2.48V13.14Zm2.076.207h.195v2.067h-.2V13.346Zm-.376,0h.206v2.067h-.206Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.2Zm-.376,0h.2v2.067h-.205V13.346Zm-.368,0h.2v2.067h-.194V13.346Z" style="fill:#fff"/><path d="M10.188,19.638a.684.684,0,1,1-.684.684A.684.684,0,0,1,10.188,19.638Zm0,.194a.489.489,0,0,1,.177.033.2.2,0,1,0,.275.269.49.49,0,1,1-.453-.3Z" style="fill:#fff"/></svg><span class="text-lg font-semibold text-gray-700 dark:text-gray-300">Docker</span></div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section scroll-animate">
-            <h2 class="cta-title">Ready to Start Your Next Project?</h2>
-            <p class="cta-description">Let's collaborate to bring your ideas to life with innovative solutions and exceptional design.</p>
-            <a href="#contact" class="cta-button">Get In Touch</a>
-        </section>
-    </div>
 
-    <footer>
-        <p>&copy; 2025 Ivan Mercedes. Senior Full Stack Engineer crafting innovative solutions.</p>
+        <section id="about" class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center reveal">About Me</h2>
+            <div class="mt-8 max-w-3xl mx-auto text-center text-gray-600 dark:text-gray-300 reveal">
+                <p class="text-lg leading-relaxed">
+                    A Senior Full Stack Engineer with over 15 years of experience developing high-impact, client-facing web solutions. I possess deep expertise in front-end frameworks like Angular, Vue, and React, back-end development with Node.js, and extensive cloud and DevOps automation using AWS, Terraform, Jenkins, and Docker. I am adept at providing technical leadership to Agile teams and managing the full software development lifecycle to build tools that enhance productivity and streamline operations.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center reveal">Technical Skills</h2>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg reveal">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Languages</h3>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400"><li>JavaScript</li><li>TypeScript</li><li>C#</li><li>SQL</li></ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg reveal" style="transition-delay: 100ms;">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Frameworks & Libraries</h3>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400"><li>Angular & Vue</li><li>Node.js</li><li>ASP.NET & .NET Core</li><li>React</li></ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg reveal" style="transition-delay: 200ms;">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Databases</h3>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400"><li>PostgreSQL</li><li>SQL Server</li><li>Oracle</li><li>MySQL</li></ul>
+                </div>
+                <div class="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg reveal" style="transition-delay: 300ms;">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Cloud & DevOps</h3>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400"><li>AWS (S3, Lambda, RDS, etc.)</li><li>Azure (Entra ID)</li><li>Terraform/Open Tofu</li><li>Jenkins, Docker, CI/CD</li></ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="container mx-auto px-6 py-20" style="display:none;">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center reveal">Projects</h2>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg reveal">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Enterprise Web & Desktop Suite</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">A high-profile, client-facing solution with both web and desktop clients, integrating with multiple cloud API services.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Angular</span>
+                        <span class="bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">ElectronJS</span>
+                        <span class="bg-yellow-100 text-yellow-800 dark:bg-yellow-500/20 dark:text-yellow-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">AWS</span>
+                        <span class="bg-indigo-100 text-indigo-800 dark:bg-indigo-500/20 dark:text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Azure</span>
+                    </div>
+                </div>
+                <div class="project-card bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg reveal" style="transition-delay: 100ms;">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Field Technician Operations Platform</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">A comprehensive system for field technicians, including applications for ruggedized laptops, handhelds, and a central web portal.</p>
+                     <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-sky-100 text-sky-800 dark:bg-sky-500/20 dark:text-sky-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">ASP.NET</span>
+                        <span class="bg-purple-100 text-purple-800 dark:bg-purple-500/20 dark:text-purple-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">C#</span>
+                        <span class="bg-red-100 text-red-800 dark:bg-red-500/20 dark:text-red-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Windows Mobile</span>
+                         <span class="bg-gray-100 text-gray-800 dark:bg-gray-500/20 dark:text-gray-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">SQL Server</span>
+                    </div>
+                </div>
+                <div class="project-card bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg reveal" style="transition-delay: 200ms;">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">USIS Engage Contractor Portal</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">A public-facing web portal for contractors to find, apply for, and manage security and training contracts.</p>
+                     <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-sky-100 text-sky-800 dark:bg-sky-500/20 dark:text-sky-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">ASP.NET</span>
+                        <span class="bg-orange-100 text-orange-800 dark:bg-orange-500/20 dark:text-orange-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">WCF</span>
+                        <span class="bg-rose-100 text-rose-800 dark:bg-rose-500/20 dark:text-rose-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">Silverlight</span>
+                        <span class="bg-teal-100 text-teal-800 dark:bg-teal-500/20 dark:text-teal-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">LINQ</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center reveal">Work Experience</h2>
+            <div class="mt-12 relative border-l-2 border-gray-300 dark:border-gray-700 ml-4 md:ml-0">
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">August 2022 - Present</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Senior Full Stack Engineer</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">Piper Companies, Remote</p>
+                </div>
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">June 2014 - June 2024</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Software/System Engineer, CTO</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">Hybrid Data Security, Washington, DC</p>
+                </div>
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">December 2021 - April 2022</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Senior Software Engineer</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">Catalyst Consulting Group, Remote</p>
+                </div>
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">January 2013 - June 2014</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Software Developer - SharePoint</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">INTEGRITYOne Partners, Inc., Washington, DC</p>
+                </div>
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">November 2011 - January 2013</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Lead Systems Consultant - Software Engineering</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">Verizon FNS, Odenton, MD</p>
+                </div>
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">May 2011 - October 2011</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Senior Web Developer</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">Workbridge Associates, Columbia, MD</p>
+                </div>
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">July 2010 - April 2011</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Programmer Analyst II</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">eFedSystems, Arlington, VA</p>
+                </div>
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">May 2010 - July 2010</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Web/Application Developer</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">J. Spargo & Associates, Fairfax, VA</p>
+                </div>
+                <div class="mb-12 pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">June 2009 - April 2010</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Lead Programmer Analyst</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">USIS, Falls Church, VA</p>
+                </div>
+                <div class="pl-8 relative reveal">
+                    <div class="absolute -left-[11px] top-1 w-5 h-5 bg-blue-500 dark:bg-blue-400 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">September 2007 - June 2009</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Programmer Analyst I/II</h3>
+                    <p class="text-md text-gray-700 dark:text-gray-300">USIS, Falls Church, VA</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="container mx-auto px-6 py-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-12">Education</h2>
+                    <div class="space-y-8">
+                        <div class="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg"><p class="text-sm text-gray-500 dark:text-gray-400">2016</p><h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Master of Science in Information Technology</h3><p class="text-md text-gray-700 dark:text-gray-300">University of Maryland University College</p></div>
+                        <div class="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-6 rounded-lg shadow-md dark:shadow-lg"><p class="text-sm text-gray-500 dark:text-gray-400">2007</p><h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-1">Bachelor of Science in Computer and Information Science</h3><p class="text-md text-gray-700 dark:text-gray-300">University of Maryland University College</p></div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-12">Certifications</h2>
+                    <div class="bg-white dark:bg-gray-800/50 dark:backdrop-blur-sm p-8 rounded-lg shadow-md dark:shadow-lg">
+                        <ul class="grid grid-cols-2 gap-4 text-gray-600 dark:text-gray-300">
+                            <li>AWS Cloud Practitioner</li><li>Security+</li><li>A+</li><li>Network+</li><li>i-Net+</li><li>IT Fundamentals+</li><li>LPI Linux Essentials</li><li>CIW-A</li><li>MCTS (.NET 2.0)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-gray-200 dark:border-gray-800/50 relative z-10">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://linkedin.com/in/ivanjmercedes" target="_blank" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">LinkedIn</a>
+                <a href="https://github.com/Draghonite" target="_blank" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">GitHub</a>
+                <a href="mailto:ivan.mercedes@sidemotion.com" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300">Email</a>
+            </div>
+            <p>&copy; 2024 Ivan J Mercedes. All Rights Reserved.</p>
+        </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Scroll animation observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // --- Theme Switcher and Particles.js Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            // Function to update icon visibility
+            const updateIcon = () => {
+                if (document.documentElement.classList.contains('dark')) {
+                    lightIcon.classList.remove('hidden');
+                    darkIcon.classList.add('hidden');
+                } else {
+                    lightIcon.classList.add('hidden');
+                    darkIcon.classList.remove('hidden');
                 }
-            });
-        }, observerOptions);
+            };
 
-        // Observe scroll animation elements
-        document.querySelectorAll('.scroll-animate').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+            // Function to update particles color
+            const updateParticles = (isDarkMode) => {
+                const color = isDarkMode ? "#4a5568" : "#cbd5e1"; // gray-700 for dark, gray-300 for light
+                const lineColor = isDarkMode ? "#4a5568" : "#e2e8f0"; // gray-700 for dark, gray-200 for light
+                
+                // Check if particlesJS is loaded
+                if (typeof particlesJS !== 'undefined') {
+                    particlesJS('particles-js', {
+                        "particles": {
+                            "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                            "color": { "value": color },
+                            "shape": { "type": "circle" },
+                            "opacity": { "value": 0.5, "random": true },
+                            "size": { "value": 3, "random": true },
+                            "line_linked": { "enable": true, "distance": 150, "color": lineColor, "opacity": 0.4, "width": 1 },
+                            "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" }
+                        },
+                        "interactivity": {
+                            "detect_on": "canvas",
+                            "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } },
+                            "modes": { "repulse": { "distance": 100 }, "push":{"particles_nb":4}}
+                        },
+                        "retina_detect": true
                     });
                 }
-            });
-        });
-
-        // Add dynamic hover effects
-        document.querySelectorAll('.portfolio-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
+            };
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+            // Initial setup
+            updateIcon();
+            updateParticles(document.documentElement.classList.contains('dark'));
 
-        // Add parallax effect to background shapes
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const shapes = document.querySelectorAll('.shape');
-            
-            shapes.forEach((shape, index) => {
-                const speed = 0.5 + (index * 0.1);
-                shape.style.transform = `translateY(${scrolled * speed}px)`;
+
+            // Theme toggle button listener
+            themeToggleButton.addEventListener('click', () => {
+                // toggle theme
+                document.documentElement.classList.toggle('dark');
+                
+                // update localStorage
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.theme = 'dark';
+                } else {
+                    localStorage.theme = 'light';
+                }
+
+                // update UI
+                updateIcon();
+                updateParticles(document.documentElement.classList.contains('dark'));
             });
+
+            // --- Scroll Reveal Logic ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
         });
     </script>
+
 </body>
 </html>
