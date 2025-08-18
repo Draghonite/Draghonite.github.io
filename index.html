@@ -862,11 +862,11 @@ It features a simple web interface where users can post status updates for diffe
             projectCards.forEach(card => {
                 const toggleButton = card.querySelector('.project-details-toggle');
                 const details = card.querySelector('.project-details');
-                const indicator = toggleButton.querySelector('.indicator');
-                const buttonTextSpan = toggleButton.querySelector('span');
-                const buttonTextNode = buttonTextSpan.childNodes[0];
+                const indicator = toggleButton?.querySelector('.indicator');
+                const buttonTextSpan = toggleButton?.querySelector('span');
+                const buttonTextNode = buttonTextSpan?.childNodes[0];
 
-                toggleButton.addEventListener('click', () => {
+                toggleButton?.addEventListener('click', () => {
                     const isOpen = toggleButton.getAttribute('aria-expanded') === 'true';
                     toggleButton.setAttribute('aria-expanded', !isOpen);
                     
